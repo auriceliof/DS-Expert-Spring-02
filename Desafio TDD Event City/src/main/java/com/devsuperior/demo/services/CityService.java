@@ -30,4 +30,9 @@ public class CityService {
 		entity = repository.save(entity);
 		return new CityDTO(entity);
 	}
+	
+	public void delete(Long id) {
+	
+			repository.deleteById(id);
+	}
 }
