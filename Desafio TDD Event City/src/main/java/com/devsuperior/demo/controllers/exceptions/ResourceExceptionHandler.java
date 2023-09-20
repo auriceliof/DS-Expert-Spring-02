@@ -7,7 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.devsuperior.demo.dto.EventDTO;
 import com.devsuperior.demo.services.exceptions.DatabaseException;
+import com.devsuperior.demo.services.exceptions.IdNotFound;
 import com.devsuperior.demo.services.exceptions.ResourceNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -38,5 +40,32 @@ public class ResourceExceptionHandler {
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
-	}		
+	}	
+	
+	@ExceptionHandler(IdNotFound.class)
+	public ResponseEntity<EventDTO> entityNotFound(){
+		return ResponseEntity.notFound().build();
+	}	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

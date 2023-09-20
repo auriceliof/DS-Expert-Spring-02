@@ -8,6 +8,9 @@ import com.devsuperior.demo.dto.EventDTO;
 import com.devsuperior.demo.entities.City;
 import com.devsuperior.demo.entities.Event;
 import com.devsuperior.demo.repositories.EventRepository;
+import com.devsuperior.demo.services.exceptions.IdNotFound;
+
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class EventService {
@@ -17,14 +20,18 @@ public class EventService {
 		
 	@Transactional
 	public EventDTO update(Long id, EventDTO dto) {
-	
-		Event entity = repository.getReferenceById(id);
-		entity.setName(dto.getName());
-		entity.setDate(dto.getDate());
-		entity.setUrl(dto.getUrl());
-		entity.setCity(new City(dto.getCityId(), null));
-		
-		entity = repository.save(entity);
-		return new EventDTO(entity);						
+		try {
+			Event entity = repository.getReferenceById(id);
+			entity.setName(dto.getName());
+			entity.setDate(dto.getDate());
+			entity.setUrl(dto.getUrl());
+			entity.setCity(new City(dto.getCityId(), null));
+			
+			entity = repository.save(entity);
+			return new EventDTO(entity);						
+		}
+		catch (EntityNotFoundException e) {
+			throw new IdNotFound("Id not found " + id);	
+		}					
 	}
 }
