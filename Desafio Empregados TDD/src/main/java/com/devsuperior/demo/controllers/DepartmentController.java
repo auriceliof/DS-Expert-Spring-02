@@ -24,3 +24,4 @@ public class DepartmentController {
 		return ResponseEntity.ok().body(list);
 	}
 }
+

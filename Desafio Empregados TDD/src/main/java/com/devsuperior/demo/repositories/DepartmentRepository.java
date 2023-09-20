@@ -7,3 +7,4 @@ import com.devsuperior.demo.entities.Department;
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
 }
+

@@ -1,21 +1,21 @@
 package com.devsuperior.demo.dto;
 
-import com.devsuperior.demo.entities.Department;
+import com.devsuperior.demo.entities.City;
 
-public class DepartmentDTO {
-
-	public Long id;
-	public String name;
+public class CityDTO {
 	
-	public DepartmentDTO() {
+	private Long id;
+	private String name;
+	
+	public CityDTO() {
 	}
 
-	public DepartmentDTO(Long id, String name) {
+	public CityDTO(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
-
-	public DepartmentDTO(Department entity) {
+	
+	public CityDTO(City entity) {
 		id = entity.getId();
 		name = entity.getName();
 	}
@@ -36,6 +36,3 @@ public class DepartmentDTO {
 		this.name = name;
 	}
 }
-
-
-
